@@ -1,6 +1,6 @@
 # ******************************************************************************
 # Copyright (c) 2018, NVIDIA CORPORATION.  All rights reserved.
-# 
+#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
 #     * Redistributions of source code must retain the above copyright
@@ -11,7 +11,7 @@
 #     * Neither the name of the NVIDIA CORPORATION nor the
 #       names of its contributors may be used to endorse or promote products
 #       derived from this software without specific prior written permission.
-#     
+#
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 #  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 #  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -22,13 +22,13 @@
 #  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 #  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 #  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-#  
+#
 # ******************************************************************************
 
 NVCC = nvcc
 
-ARCH=sm_70
-NVCC_FLAGS = -arch=$(ARCH) -std=c++11 
+ARCH=sm_61
+NVCC_FLAGS = -arch=$(ARCH) -std=c++11
 NVCC_FLAGS += --use_fast_math
 
 MAX_REGS = 128
@@ -45,4 +45,4 @@ HEADERS = ../nv_wavenet_util.cuh \
 default: wavenet_infer
 
 wavenet_infer: wavenet_infer.cu $(HEADERS) wavenet_infer.h
-	$(NVCC) $(NVCC_FLAGS) -lineinfo -maxrregcount $(MAX_REGS) -I .. wavenet_infer.cu ../matrix.cpp -lz -Xcompiler -fPIC -shared -o wavenet_infer.so 
+	$(NVCC) $(NVCC_FLAGS) -lineinfo -maxrregcount $(MAX_REGS) -I .. wavenet_infer.cu ../matrix.cpp -lz -Xcompiler -fPIC -shared -o wavenet_infer.so

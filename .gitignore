@@ -76,3 +76,9 @@ target/
 # Build files
 *.so
 pytorch/nv_wavenet_ext/**
+
+# Audio files
+*.wav
+
+# Torch files
+*.pt
