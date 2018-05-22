@@ -69,7 +69,7 @@ if __name__ == '__main__':
     wavenet = nv_wavenet.NVWaveNet(**model)
     cond_input = torch_load("cond_input.pt", torch.device('cuda'))
 
-    samples = wavenet.infer(cond_input, nv_wavenet.Impl.AUTO)
+    samples = wavenet.infer(cond_input, nv_wavenet.Impl.AUTO)[0]
 
     audio = mu_law_decode_numpy(samples.cpu().numpy(), 256)
     audio = MAX_WAV_VALUE * audio
