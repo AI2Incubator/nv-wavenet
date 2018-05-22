@@ -44,6 +44,12 @@ int getOccupancy(int deviceId, size_t blockSize, void* func) {
     gpuErrChk ( cudaGetDeviceProperties(&prop, 0) );
     cudaOccDeviceProp occProp = prop;
 
+    // NOTE: If you encounter a GPUassert error at here, ensure that Makefile was compiled with the
+    // right ``ARCH=sm_61``
+    // REFERENCES:
+    // * https://developer.nvidia.com/cuda-gpus
+    // * https://devtalk.nvidia.com/default/topic/876431/problem-in-the-program-running-on-cuda/
+    // * https://stackoverflow.com/questions/27320527/cuda-compilation-of-examples
     cudaFuncAttributes attr;
     gpuErrChk ( cudaFuncGetAttributes(&attr, func) );
     cudaOccFuncAttributes occAttr = attr;
