@@ -75,4 +75,4 @@ target/
 
 # Build files
 *.so
-nv_wavenet_ext/**
+pytorch/nv_wavenet_ext/**
