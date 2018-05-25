@@ -27,7 +27,9 @@
 
 NVCC = nvcc
 
-ARCH=sm_37
+# NOTE: This codebase requires 6.0+ compute capability.
+# https://github.com/NVIDIA/nv-wavenet/issues/5
+ARCH=sm_60
 NVCC_FLAGS = -arch=$(ARCH) -std=c++11
 NVCC_FLAGS += --use_fast_math
 
