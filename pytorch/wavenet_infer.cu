@@ -33,7 +33,7 @@
 
 // Must match the wavenet channels
 const int A = 256;
-const int R = 64;
+const int R = 128;
 const int S = 256;
 typedef nvWavenetInfer<float,float, R, S, A> MyWaveNet;
 
@@ -59,11 +59,11 @@ std::shared_ptr<MyWaveNet> make_wavenet(int sample_count,
 					                               batch_size, sample_count,
 									               implementation,
                                                    use_embed_tanh));
-    
+
     wavenet->setEmbeddings(embedding_prev, embedding_curr);
-		
+
     for (int l = 0; l < num_layers; l++) {
-        wavenet->setLayerWeights(l, in_layer_weights_prev[l], 
+        wavenet->setLayerWeights(l, in_layer_weights_prev[l],
                                     in_layer_weights_curr[l],
                                     in_layer_biases[l],
                                     res_layer_weights[l],
@@ -71,12 +71,12 @@ std::shared_ptr<MyWaveNet> make_wavenet(int sample_count,
                                     skip_layer_weights[l],
                                     skip_layer_biases[l]);
     }
-        
+
     // We didn't use biases on our outputs
     std::vector<float> dummy_bias_first(S, 0);
     std::vector<float> dummy_bias_second(A, 0);
-    
-    wavenet->setOutWeights(conv_out_weight, 
+
+    wavenet->setOutWeights(conv_out_weight,
                            dummy_bias_first.data(),
                            conv_end_weight,
                            dummy_bias_second.data());
@@ -142,8 +142,8 @@ void wavenet_infer(int sample_count,
 		assert(samples);
 		infer(wavenet, cond_input, samples, sample_count, batch_size);
 		return;
-}	
+}
 
-int get_R() {return R;}	
-int get_S() {return S;}	
-int get_A() {return A;}	
+int get_R() {return R;}
+int get_S() {return S;}
+int get_A() {return A;}
