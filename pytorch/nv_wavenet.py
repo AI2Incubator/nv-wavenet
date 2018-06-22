@@ -52,7 +52,11 @@ def column_major(x):
 
 
 def enum(**enums):
-    return type('Enum', (), enums)
+    return type(
+        'Enum',
+        (),
+        enums,
+    )
 
 
 Impl = enum(AUTO=0, SINGLE_BLOCK=1, DUAL_BLOCK=2, PERSISTENT=3)
